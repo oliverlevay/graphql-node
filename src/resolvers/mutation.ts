@@ -1,7 +1,7 @@
-const { prisma } = require('../database.js');
+import { prisma } from '../database';
 
-const Mutation = {
-  registerStudent: (parent, args) => {
+export const Mutation = {
+  registerStudent: (parent: any, args: any) => {
     return prisma.student.create({
       data: {
         email: args.email,
@@ -12,7 +12,7 @@ const Mutation = {
       },
     });
   },
-  enroll: (parent, args) => {
+  enroll: (parent: any, args: any) => {
     return prisma.student.update({
       where: { id: Number(args.id) },
       data: {
@@ -21,7 +21,7 @@ const Mutation = {
     });
   },
 
-  createTeacher: (parent, args) => {
+  createTeacher: (parent: any, args: any) => {
     return prisma.teacher.create({
       data: {
         email: args.data.email,
@@ -33,8 +33,7 @@ const Mutation = {
     });
   },
 
-  createCourse: (parent, args) => {
-    console.log(parent, args);
+  createCourse: (parent: any, args: any) => {
     return prisma.course.create({
       data: {
         code: args.code,
@@ -46,7 +45,7 @@ const Mutation = {
     });
   },
 
-  createDepartment: (parent, args) => {
+  createDepartment: (parent: any, args: any) => {
     return prisma.department.create({
       data: {
         name: args.name,
@@ -54,8 +53,4 @@ const Mutation = {
       },
     });
   },
-};
-
-module.exports = {
-  Mutation,
 };

@@ -1,52 +1,54 @@
-const { prisma } = require('../database.js');
+import { prisma } from '../database';
+import type {
+  Department as PrismaDepartment,
+  Student as PrismaStudent,
+  Teacher as PrismaTeacher,
+  Course as PrismaCourse,
+} from '.prisma/client';
 
-const Query = {
-  enrollment: (parent, args) => {
+export const Query = {
+  enrollment: () => {
     return prisma.student.findMany({
       where: { enrolled: true },
     });
   },
-  student: (parent, args) => {
+  student: (_student: PrismaStudent, args: { id: string }) => {
     return prisma.student.findFirst({
       where: { id: Number(args.id) },
     });
   },
 
-  students: (parent, args) => {
+  students: () => {
     return prisma.student.findMany({});
   },
 
-  departments: (parent, args) => {
+  departments: () => {
     return prisma.department.findMany({});
   },
 
-  department: (parent, args) => {
+  department: (department: PrismaDepartment, args: { id: string }) => {
     return prisma.department.findFirst({
       where: { id: Number(args.id) },
     });
   },
 
-  courses: (parent, args) => {
+  courses: () => {
     return prisma.course.findMany({});
   },
 
-  course: (parent, args) => {
+  course: (_course: PrismaCourse, args: { id: string }) => {
     return prisma.course.findFirst({
       where: { id: Number(args.id) },
     });
   },
 
-  teachers: (parent, args) => {
+  teachers: () => {
     return prisma.teacher.findMany({});
   },
 
-  teacher: (parent, args) => {
+  teacher: (_parent: any, args: { id: string }) => {
     return prisma.teacher.findFirst({
       where: { id: Number(args.id) },
     });
   },
-};
-
-module.exports = {
-  Query,
 };

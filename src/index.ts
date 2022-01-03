@@ -1,9 +1,7 @@
-const { ApolloServer } = require('apollo-server');
-const {
-  ApolloServerPluginLandingPageGraphQLPlayground,
-} = require('apollo-server-core');
-const { typeDefs } = require('./schema');
-const { resolvers } = require('./resolvers');
+import { ApolloServer } from 'apollo-server';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
+import { typeDefs } from './schema';
+import { resolvers } from './resolvers';
 
 const port = process.env.PORT || 9090;
 
